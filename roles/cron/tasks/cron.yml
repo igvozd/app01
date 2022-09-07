@@ -1,0 +1,20 @@
+- name: add 'echo' cronjob
+  cron:
+    name: "add 'echo' cronjob"
+    minute: "0"
+    hour: "3"
+    day: "*"
+    month: "*"
+    weekday: "*/3"
+    user: root
+    job: "/usr/bin/echo $(date '+%d-%m-%Y %H:%M:%S') 'echo cronjob' > /var/log/date.log"
+    cron_file: ansible_echo_cronjob
+  tags: [ never, cron ]
+
+- name: switch off messages from custom scripts
+  cronvar:
+    name: MAILTO
+    value: '""'
+    cron_file: ansible_echo_cronjob
+  tags: [ never, cron ]
+

@@ -1,0 +1,6 @@
+---
+# tasks file for cron
+
+- name: Add 'echo' cronjob
+  include_tasks: tasks/cron.yml
+  tags: [ never, cron ]
